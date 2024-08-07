@@ -15,7 +15,8 @@ CustomerModel.init({
     },
     document: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     phone: {
         type:DataTypes.STRING,
@@ -27,8 +28,39 @@ CustomerModel.init({
         unique: true
     },
     birthday: {
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
+        allowNull: false
+    },
+    gender: {
+        type: DataTypes.ENUM('masculino', 'femenino'),
+        allowNull: false
+    },
+    country:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    department: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    city:{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    neighborhood: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    address:{
+        type: DataTypes.STRING,
+        allowNull: false
     }
+},{
+    sequelize,
+    modelName: 'CustomerModel',
+    tableName: 'customer',
+    paranoid: true,
+    timestamps: true
 })
 
 export default CustomerModel;

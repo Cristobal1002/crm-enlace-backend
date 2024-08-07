@@ -42,10 +42,7 @@ UserModel.init({
     modelName: 'UserModel',
     tableName: 'user',
     paranoid: true,
-    timestamps: true,
-    defaultScope: {
-        attributes: { exclude: ["createdAt", "deletedAt", "updatedAt"] },
-    },
+    timestamps: true
 })
 
 export default UserModel;
