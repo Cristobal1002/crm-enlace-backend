@@ -2,7 +2,8 @@ import {Model, DataTypes} from 'sequelize';
 import {sequelize} from '../database/main.database.js';
 import BankModel from "./bank.model.js";
 import CustomerModel from "./customer.model.js";
-import PodiumModel from "./podium.model.js";
+import CampaignModel from "./campaign.model.js";
+import UserModel from "./user.model.js";
 
 class DonationModel extends Model{}
 
@@ -12,10 +13,10 @@ DonationModel.init({
         autoIncrement: true,
         primaryKey:true
     },
-    podium_id:{
+    campaign_id:{
         type: DataTypes.INTEGER,
         references: {
-            model: PodiumModel,
+            model: CampaignModel,
             key: 'id'
         }
     },
@@ -34,10 +35,17 @@ DonationModel.init({
             key: "id"
         }
     },
-    donor_id: {
+    customer_id: {
         type: DataTypes.INTEGER,
         references: {
             model: CustomerModel,
+            key: "id"
+        }
+    },
+    user_id: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: UserModel,
             key: "id"
         }
     },

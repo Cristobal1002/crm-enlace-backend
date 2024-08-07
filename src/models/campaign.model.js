@@ -1,9 +1,10 @@
 import { Model, DataTypes} from 'sequelize';
 import { sequelize } from '../database/main.database.js';
+import UserModel from "./user.model.js";
 
-class PodiumModel extends Model{}
+class CampaignModel extends Model{}
 
-PodiumModel.init({
+CampaignModel.init({
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -28,13 +29,27 @@ PodiumModel.init({
     status: {
         type: DataTypes.BOOLEAN,
         defaultValue: true
+    },
+    created_by: {
+        type: DataTypes.INTEGER,
+        references: {
+            model:UserModel,
+            key:'id'
+        }
+    },
+    updated_by: {
+        type: DataTypes.INTEGER,
+        references: {
+            model:UserModel,
+            key:'id'
+        }
     }
 },{
     sequelize,
-    modelName: 'PodiumModel',
+    modelName: 'CampaignModel',
     tableName: 'podium',
     paranoid: true,
     timestamps: true
 })
 
-export default PodiumModel;
+export default CampaignModel;
