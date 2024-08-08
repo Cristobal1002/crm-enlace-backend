@@ -12,16 +12,12 @@ CountryModel.init({
     code: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true // Código ISO 3166-1 alpha-2
+        unique: true
     },
     name: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
-    },
-    flag: {
-        type: DataTypes.STRING,
-        allowNull:false
     }
 }, {
     sequelize,

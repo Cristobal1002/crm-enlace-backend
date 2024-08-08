@@ -15,7 +15,8 @@ UserModel.init({
     },
     document: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     phone: {
         type: DataTypes.STRING,
@@ -27,7 +28,8 @@ UserModel.init({
     },
     status: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue: true
     },
     image: {
         type: DataTypes.STRING,

@@ -7,9 +7,11 @@ import NoveltyModel from './novelty.model.js';
 import ReasonsModel from './reasons.model.js';
 import DonationNoveltyModel from './donation-novelty.model.js';
 import DonationReasonModel from './donation-reason.model.js';
-import DepartmentModel from "./department.model.js";
 import CountryModel from "./country.model.js";
+import DepartmentModel from "./department.model.js";
 import CityModel from "./city.model.js";
+import {seedDatabase} from '../database/seed.database.js';
+import {sequelize} from "../database/main.database.js";
 
 
 ////Relaciones en las Donaciones
@@ -84,7 +86,8 @@ CityModel.belongsTo(DepartmentModel, { foreignKey: 'department_id' });
 
 
 export const syncDb = async() => {
-    await UserModel.sync({alter: true, force: true});
+
+    /*await UserModel.sync({alter: true, force: true});
     await CampaignModel.sync({alter: true, force: true});
     await CustomerModel.sync({alter: true, force: true});
     await BankModel.sync({alter: true, force: true});
@@ -95,7 +98,9 @@ export const syncDb = async() => {
     await DonationReasonModel.sync({alter: true, force: true});
     await CountryModel.sync({alter: true, force: true});
     await DepartmentModel.sync({alter: true, force: true});
-    await CityModel.sync({alter: true, force: true});
+    await CityModel.sync({alter: true, force: true});*/
+    await sequelize.sync({alter: true, force: true});
+    await seedDatabase()
 }
 
 export const model = {
