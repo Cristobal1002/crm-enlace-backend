@@ -1,5 +1,16 @@
 import { responses } from '../network/main.network.js'
+import {authService} from "../services/main.service.js";
 
+export const login = async (req, res, next) => {
+    try{
+        const response = await authService.login(req.body)
+        if(response.data){ responses.success(req, res, response.data)}
+        if(response.error){responses.unauthorized(req, res, response.error)}
+    } catch (e){
+        console.log(e)
+        next(e)
+    }
+}
 export const test = async (req, res, next) => {
     const data = req.body
     try {

@@ -27,7 +27,7 @@ UserModel.init({
         allowNull: false
     },
     status: {
-        type: DataTypes.STRING,
+        type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true
     },

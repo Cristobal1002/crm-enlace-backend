@@ -14,6 +14,10 @@ NoveltyModel.init({
         type: DataTypes.STRING,
         allowNull: false
     },
+    status: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+    },
     created_by: {
         type: DataTypes.INTEGER,
         references: {

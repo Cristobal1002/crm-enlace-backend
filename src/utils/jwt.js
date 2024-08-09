@@ -3,9 +3,9 @@ import { config } from '../config/secrets.js'
 
 const secret = config.jwt
 
-export const getToken = (uid) => {
+export const getToken = (id) => {
     return new Promise((resolve, reject) => {
-        const payload = { app: 'api-backend', u: uid, expire: new Date() }
+        const payload = { app: 'api-backend', user: id, expire: new Date() }
         Jwt.sign(payload, secret, { expiresIn: '6h' },
             (error, token) => {
                 if (error) { reject('Imposibble to get token') } else {
@@ -23,7 +23,7 @@ export const  verifyToken = (token) => {
     }
 };
 
-const getData = (token) => {
+export const getData = (token) => {
     try {
         const data = Jwt.verify(token, secret, (err, decoded) => decoded);
         data.valid = true;

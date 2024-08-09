@@ -18,10 +18,11 @@ export const createUser = async (data) => {
 export const updateUser = async (id, data) => {
     console.log('Data en el servicio',id, data)
     try{
-        const update = await model.UserModel.update(data,{
-            where: {id}
+        const [affectedRows, updatedRows] = await model.UserModel.update(data,{
+            where: {id},
+            returning: true
         });
-        return {data:update, error:null, warning:null}
+        return {data:updatedRows[0], error:null, warning:null}
     } catch (e) {
         throw CustomError({message: `Error al actualizar el usuario`, code:500, data:e.errors})
     }
