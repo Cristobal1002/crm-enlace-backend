@@ -1,28 +1,37 @@
-import Jwt from 'jsonwebtoken'
-import { config } from '../config/secrets.js'
+import Jwt from 'jsonwebtoken';
+import { config } from '../config/secrets.js';
 
-const secret = config.jwt
+const secret = config.jwt;
 
-export const getToken = (id) => {
+// Crear el token
+export const getToken = (user) => {
+    const { id, name, roll } = user
     return new Promise((resolve, reject) => {
-        const payload = { app: 'api-backend', user: id, expire: new Date() }
-        Jwt.sign(payload, secret, { expiresIn: '6h' },
-            (error, token) => {
-                if (error) { reject('Imposibble to get token') } else {
-                    resolve(token)
-                }
-            })
-    })
-}
-
-export const  verifyToken = (token) => {
-    try {
-        return Jwt.verify(token, secret, (err, decoded) => !err);
-    } catch (error) {
-        return false;
-    }
+        const payload = { app: 'api-backend', user: id, name, role: roll, expire: new Date() };
+        Jwt.sign(payload, secret, { expiresIn: '6h' }, (error, token) => {
+            if (error) {
+                reject(new Error('Impossible to get token'));
+            } else {
+                resolve(token);
+            }
+        });
+    });
 };
 
+// Verificar el token
+export const verifyToken = (token) => {
+    return new Promise((resolve, reject) => {
+        Jwt.verify(token, secret, (err, decoded) => {
+            if (err) {
+                resolve(false);
+            } else {
+                resolve(true);
+            }
+        });
+    });
+};
+
+// Obtener datos del token
 export const getData = (token) => {
     try {
         const data = Jwt.verify(token, secret, (err, decoded) => decoded);
@@ -38,3 +47,4 @@ export const getData = (token) => {
         };
     }
 };
+

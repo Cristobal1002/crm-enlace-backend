@@ -13,7 +13,7 @@ export const login = async (data) => {
         }
         if(!usr || !valHash) return {error: `User or Password invalid`}
         else {
-            const signToken = await jwt.getToken(usr.id)
+            const signToken = await jwt.getToken(usr)
             return {data: {user: usr, token: signToken}, error: null, warning: null}
         }
     } catch (e){

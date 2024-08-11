@@ -5,3 +5,4 @@ import { validateRequestMiddleware, validateToken } from '../middleware/main.mid
 export const auth = express.Router();
 
 auth.post(`/login`,authValidator.loginValidator, validateRequestMiddleware.validateRequest, authController.login)
+auth.get(`/validate`, validateToken.checkToken,validateRequestMiddleware.validateRequest, authController.validate )

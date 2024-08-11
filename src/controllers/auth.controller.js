@@ -19,3 +19,12 @@ export const test = async (req, res, next) => {
         next(e)
     }
 }
+
+export const validate = async (req, res, next) => {
+    try{
+        console.log(req)
+        if(req.valid){responses.success(req, res, {valid:req.valid, token: req.token})}
+    } catch (e) {
+
+    }
+}
