@@ -25,6 +25,6 @@ export const validate = async (req, res, next) => {
         console.log(req)
         if(req.valid){responses.success(req, res, {valid:req.valid, token: req.token})}
     } catch (e) {
-
+        next(e)
     }
 }

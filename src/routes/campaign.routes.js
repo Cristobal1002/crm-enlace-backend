@@ -8,4 +8,6 @@ export const campaign = express.Router();
 campaign.post(``, validateToken.checkToken, validateAdmin.isAdmin, campaignValidator.createCampaignValidator, validateRequestMiddleware.validateRequest, campaignController.createCampaign )
 campaign.get(`/active`,validateToken.checkToken, validateRequestMiddleware.validateRequest,campaignController.getActive)
 campaign.get(`/list`,validateToken.checkToken, validateRequestMiddleware.validateRequest,campaignController.getCampaignList)
+campaign.post(`/inactivate`, validateToken.checkToken, validateAdmin.isAdmin,validateRequestMiddleware.validateRequest, campaignController.inactivateCurrent)
+campaign.put(`/:id`, validateToken.checkToken, validateAdmin.isAdmin,validateRequestMiddleware.validateRequest, campaignController.updateCampaign)
 
