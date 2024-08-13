@@ -9,5 +9,8 @@ campaign.post(``, validateToken.checkToken, validateAdmin.isAdmin, campaignValid
 campaign.get(`/active`,validateToken.checkToken, validateRequestMiddleware.validateRequest,campaignController.getActive)
 campaign.get(`/list`,validateToken.checkToken, validateRequestMiddleware.validateRequest,campaignController.getCampaignList)
 campaign.post(`/inactivate`, validateToken.checkToken, validateAdmin.isAdmin,validateRequestMiddleware.validateRequest, campaignController.inactivateCurrent)
+campaign.put(`/activate`, campaignController.activateCampaign)
+//Esta ruta ultima toca dejarla debajo porque sino se come las otras por que es un comodin
 campaign.put(`/:id`, validateToken.checkToken, validateAdmin.isAdmin,validateRequestMiddleware.validateRequest, campaignController.updateCampaign)
+
 

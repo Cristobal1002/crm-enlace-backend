@@ -100,7 +100,28 @@ export const updateCampaign = async (id, data) => {
         });
         return {data:updatedRows[0], error:null, warning:null}
     } catch (e) {
-        throw CustomError({message: `Error al actualizar el usuario`, code:500, data:e.errors})
+        throw CustomError({message: `Error al actualizar la campaña`, code:500, data:e.errors})
+    }
+}
+
+export const activateCampaign = async (data) => {
+    console.log('Entra al servicio de active')
+
+    try{
+
+        const falseAll = await model.CampaignModel.update(
+            { status: false, updated_by: data.updated_by },
+            {where: {status: true}, returning:true}
+        )
+        const [affectedRows, updatedRows] = await model.CampaignModel.update({status:true, updated_by: data.updated_by}, {
+                where: {id: data.id},
+                returning: true
+            })
+        return {data:updatedRows[0], error:null, warning:null}
+
+
+    } catch (e) {
+        throw CustomError({message: `Error al actualizar las campañas`, code:500, data:e.errors})
     }
 }
 

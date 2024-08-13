@@ -55,3 +55,14 @@ export const updateCampaign = async (req, res, next) => {
         next(e)
     }
 }
+
+export const activateCampaign = async (req, res, next) => {
+    try{
+        const response = await campaignService.activateCampaign(req.body)
+        if(response.data){ responses.success(req, res, response.data)}
+        if(response.error){responses.error(req, res, response.error)}
+    }catch (e) {
+        console.log(e)
+        next(e)
+    }
+}
