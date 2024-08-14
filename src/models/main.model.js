@@ -87,20 +87,20 @@ CityModel.belongsTo(DepartmentModel, { foreignKey: 'department_id' });
 
 export const syncDb = async() => {
 
-    /*await UserModel.sync({alter: true, force: true});
-    await CampaignModel.sync({alter: true, force: true});
-    await CustomerModel.sync({alter: true, force: true});
-    await BankModel.sync({alter: true, force: true});
-    await DonationModel.sync({alter: true, force: true});
-    await NoveltyModel.sync({alter: true, force: true});
-    await ReasonsModel.sync({alter: true, force: true});
-    await DonationNoveltyModel.sync({alter: true, force: true});
-    await DonationReasonModel.sync({alter: true, force: true});
-    await CountryModel.sync({alter: true, force: true});
-    await DepartmentModel.sync({alter: true, force: true});
-    await CityModel.sync({alter: true, force: true});*/
-    await sequelize.sync({alter: true, force: true});
-    await seedDatabase()
+    //await UserModel.sync({alter: true, force: true});
+    //await CampaignModel.sync({alter: true, force: true});
+    //await CustomerModel.sync({alter: true, force: true});
+    //await BankModel.sync({alter: true, force: true});
+    //await DonationModel.sync({alter: true, force: true});
+    //await NoveltyModel.sync({alter: true, force: true});
+    //await ReasonsModel.sync({alter: true, force: true});
+    //await DonationNoveltyModel.sync({alter: true, force: true});
+    //await DonationReasonModel.sync({alter: true, force: true});
+    //await CountryModel.sync({alter: true, force: true});
+    //await DepartmentModel.sync({alter: true, force: true});
+    //await CityModel.sync({alter: true, force: true});
+    //await sequelize.sync({alter: true, force: true});
+    //await seedDatabase()
 }
 
 export const model = {

@@ -27,9 +27,6 @@ export const getCampaignList = async (page, pageSize, query) => {
     // Construir la consulta de filtrado
     const whereClause = {};
 
-    if (status) {
-        whereClause.status = status;
-    }
     if (name) {
         whereClause.name = { [Op.iLike]: `%${name}%` };
     }

@@ -1,6 +1,9 @@
 import {Model, DataTypes} from 'sequelize';
 import { sequelize } from '../database/main.database.js';
 import UserModel from "./user.model.js";
+import CountryModel from "./country.model.js";
+import DepartmentModel from "./department.model.js";
+import CityModel from "./city.model.js";
 
 class CustomerModel extends Model {}
 
@@ -36,16 +39,28 @@ CustomerModel.init({
         type: DataTypes.ENUM('masculino', 'femenino'),
         allowNull: false
     },
-    country:{
-        type: DataTypes.STRING,
+    country_id: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: CountryModel,
+            key: 'id'
+        },
         allowNull: false
     },
-    department: {
-        type: DataTypes.STRING,
+    department_id: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: DepartmentModel,
+            key: 'id'
+        },
         allowNull: false
     },
-    city:{
-        type: DataTypes.STRING,
+    city_id: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: CityModel,
+            key: 'id'
+        },
         allowNull: false
     },
     neighborhood: {
