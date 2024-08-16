@@ -6,25 +6,46 @@ class CountryModel extends Model {}
 CountryModel.init({
     id: {
         type: DataTypes.INTEGER,
-        autoIncrement: true,
         primaryKey: true
-    },
-    code: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
     },
     name: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
+    },
+    iso3: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
+    },
+    iso2: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
+    },
+    numeric_code: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
+    },
+    phone_code: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    currency: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    emoji: {
+        type: DataTypes.TEXT,
+        allowNull: false
     }
 }, {
     sequelize,
     modelName: 'CountryModel',
     tableName: 'countries',
-    timestamps: true,
-    paranoid: true
+    paranoid: true,
+    timestamps: false
 });
 
 export default CountryModel;

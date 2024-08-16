@@ -2,7 +2,7 @@ import {Model, DataTypes} from 'sequelize';
 import { sequelize } from '../database/main.database.js';
 import UserModel from "./user.model.js";
 import CountryModel from "./country.model.js";
-import DepartmentModel from "./department.model.js";
+import StateModel from "./state.model.js";
 import CityModel from "./city.model.js";
 
 class CustomerModel extends Model {}
@@ -47,10 +47,10 @@ CustomerModel.init({
         },
         allowNull: false
     },
-    department_id: {
+    state_id: {
         type: DataTypes.INTEGER,
         references: {
-            model: DepartmentModel,
+            model: StateModel,
             key: 'id'
         },
         allowNull: false

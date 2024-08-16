@@ -8,7 +8,7 @@ import ReasonsModel from './reasons.model.js';
 import DonationNoveltyModel from './donation-novelty.model.js';
 import DonationReasonModel from './donation-reason.model.js';
 import CountryModel from "./country.model.js";
-import DepartmentModel from "./department.model.js";
+import StateModel from "./state.model.js";
 import CityModel from "./city.model.js";
 import {seedDatabase} from '../database/seed.database.js';
 import {sequelize} from "../database/main.database.js";
@@ -77,19 +77,18 @@ ReasonsModel.belongsTo(UserModel, { as: 'updater', foreignKey: 'updated_by' });
 
 //Relaciones entre tablas de paises y ciudades
 // Relación uno a muchos entre País y Departamento
-CountryModel.hasMany(DepartmentModel, { foreignKey: 'country_id' });
-DepartmentModel.belongsTo(CountryModel, { foreignKey: 'country_id' });
+CountryModel.hasMany(StateModel, { foreignKey: 'country_id' });
+StateModel.belongsTo(CountryModel, { foreignKey: 'country_id' });
 
 // Relación uno a muchos entre Departamento y Ciudad
-DepartmentModel.hasMany(CityModel, { foreignKey: 'department_id' });
-CityModel.belongsTo(DepartmentModel, { foreignKey: 'department_id' });
+StateModel.hasMany(CityModel, { foreignKey: 'state_id' });
+CityModel.belongsTo(StateModel, { foreignKey: 'state_id' });
 
 
 export const syncDb = async() => {
 
     //await UserModel.sync({alter: true, force: true});
     //await CampaignModel.sync({alter: true, force: true});
-    //await CustomerModel.sync({alter: true, force: true});
     //await BankModel.sync({alter: true, force: true});
     //await DonationModel.sync({alter: true, force: true});
     //await NoveltyModel.sync({alter: true, force: true});
@@ -97,8 +96,9 @@ export const syncDb = async() => {
     //await DonationNoveltyModel.sync({alter: true, force: true});
     //await DonationReasonModel.sync({alter: true, force: true});
     //await CountryModel.sync({alter: true, force: true});
-    //await DepartmentModel.sync({alter: true, force: true});
+    //await StateModel.sync({alter: true, force: true});
     //await CityModel.sync({alter: true, force: true});
+    //await CustomerModel.sync({alter: true, force: true});
     //await sequelize.sync({alter: true, force: true});
     //await seedDatabase()
 }
@@ -114,6 +114,6 @@ export const model = {
     DonationNoveltyModel,
     DonationReasonModel,
     CountryModel,
-    DepartmentModel,
+    StateModel,
     CityModel
 }
