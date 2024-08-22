@@ -13,14 +13,26 @@ CustomerModel.init({
         autoIncrement: true,
         primaryKey: true
     },
-    name: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
     document: {
         type: DataTypes.INTEGER,
         allowNull: false,
         unique: true
+    },
+    document_type: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    company_name: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    first_name: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    last_name: {
+        type: DataTypes.STRING,
+        allowNull: true
     },
     phone: {
         type:DataTypes.STRING,
@@ -29,15 +41,14 @@ CustomerModel.init({
     email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
     },
     birthday: {
         type: DataTypes.DATE,
-        allowNull: false
+        allowNull: true
     },
     gender: {
         type: DataTypes.ENUM('masculino', 'femenino'),
-        allowNull: false
+        allowNull: true
     },
     country_id: {
         type: DataTypes.INTEGER,

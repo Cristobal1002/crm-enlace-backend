@@ -19,7 +19,7 @@ export default async () => {
     app.use(express.json({limit: '20mb'}));
     app.use(express.urlencoded({extended: true, limit: '20mb'}));
 
-    syncDb().then(() => console.log('Tablas sincronizadas'))
+    //syncDb().then(() => console.log('Tablas sincronizadas'))
 
     routes(app);
     app.use(errorHandlerMiddleware.errorHandler); //Este va a ser el manejador de errores de la aplicacion
