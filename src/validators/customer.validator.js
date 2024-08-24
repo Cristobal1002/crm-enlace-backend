@@ -8,7 +8,7 @@ export const createCustomerValidator = [
     body(`document_type`).isString().notEmpty().withMessage('Document type is a required field and must be number'),
     body(`phone`).isString().notEmpty().withMessage('Phone is a required field and must be string'),
     body(`email`).isEmail().notEmpty().withMessage('Email is a required field and must be email'),
-    body(`birthday`).optional().isDate().notEmpty().withMessage('Birthday is a required field and must be string'),
+    body(`birthday`).optional().notEmpty().withMessage('Birthday is a required field and must be string'),
     body(`gender`).optional().isString().notEmpty().withMessage('Gender is a required field and must be string'),
     body(`country_id`).isInt().notEmpty().withMessage('Country is a required field and must be numeric (id)'),
     body(`state_id`).isInt().notEmpty().withMessage('Department is a required field and must be numeric (id)'),

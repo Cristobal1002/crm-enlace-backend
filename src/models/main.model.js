@@ -84,6 +84,20 @@ StateModel.belongsTo(CountryModel, { foreignKey: 'country_id' });
 StateModel.hasMany(CityModel, { foreignKey: 'state_id' });
 CityModel.belongsTo(StateModel, { foreignKey: 'state_id' });
 
+// Relación uno a muchos entre Pais y Cliente
+CustomerModel.belongsTo(CountryModel, { foreignKey: 'country_id' });
+CountryModel.hasMany(CustomerModel, { foreignKey: 'country_id' });
+
+// Relación uno a muchos entre Estados y Cliente
+CustomerModel.belongsTo(StateModel, { foreignKey: 'state_id' });
+StateModel.hasMany(CustomerModel, { foreignKey: 'state_id' });
+
+// Relación uno a muchos entre Ciudad y Cliente
+CustomerModel.belongsTo(CityModel, { foreignKey: 'city_id' });
+CityModel.hasMany(CustomerModel, { foreignKey: 'city_id' });
+
+
+
 
 export const syncDb = async() => {
 
@@ -95,10 +109,10 @@ export const syncDb = async() => {
     //await ReasonsModel.sync({alter: true, force: true});
     //await DonationNoveltyModel.sync({alter: true, force: true});
     //await DonationReasonModel.sync({alter: true, force: true});
-    //await CountryModel.sync({alter: true, force: true});
-    //await StateModel.sync({alter: true, force: true});
-    //await CityModel.sync({alter: true, force: true});
-    await CustomerModel.sync({alter: true, force: true});
+    await CountryModel.sync({alter: true});
+    await StateModel.sync({alter: true});
+    await CityModel.sync({alter: true});
+    await CustomerModel.sync({alter: true});
     //await sequelize.sync({alter: true, force: true});
     //await seedDatabase()
 }
