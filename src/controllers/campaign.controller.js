@@ -1,5 +1,5 @@
 import { responses } from '../network/main.network.js'
-import {campaignService, userService} from "../services/main.service.js";
+import {campaignService} from "../services/main.service.js";
 
 export const createCampaign = async (req, res, next) => {
     try{

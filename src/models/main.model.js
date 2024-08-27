@@ -109,10 +109,10 @@ export const syncDb = async() => {
     //await ReasonsModel.sync({alter: true, force: true});
     //await DonationNoveltyModel.sync({alter: true, force: true});
     //await DonationReasonModel.sync({alter: true, force: true});
-    await CountryModel.sync({alter: true});
-    await StateModel.sync({alter: true});
-    await CityModel.sync({alter: true});
-    await CustomerModel.sync({alter: true});
+    //await CountryModel.sync({alter: true});
+    //await StateModel.sync({alter: true});
+    //await CityModel.sync({alter: true});
+    //await CustomerModel.sync({alter: true});
     //await sequelize.sync({alter: true, force: true});
     //await seedDatabase()
 }

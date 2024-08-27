@@ -22,6 +22,10 @@ BankModel.init({
         type: DataTypes.STRING,
         allowNull: true,
     },
+    pay_link:{
+        type: DataTypes.STRING,
+        allowNull: true
+    },
     status: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
