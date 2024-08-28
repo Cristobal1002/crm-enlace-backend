@@ -1,5 +1,6 @@
 import {responses} from '../network/main.network.js'
 import {campaignService, customerService} from '../services/main.service.js'
+import {warning} from "../network/response.network.js";
 
 export const createCustomer = async (req, res, next) => {
     try {
@@ -34,6 +35,24 @@ export const updateCustomer = async(req, res, next) => {
         if(response.error){responses.error(req, res, response.error)}
         if(response.warning){responses.warning(req, res, response.warning)}
     } catch (e) {
+        console.log(e)
+        next(e)
+    }
+}
+
+export const getCustomerByDocument = async (req, res, next) => {
+
+    let document = req.query.document
+    console.log('Document en controller', document)
+    try {
+        const response = await customerService.getCustomerByDocument(document)
+        if(response.data){ responses.success(req, res, response.data)
+        } else {
+            responses.success(req, res, response.data)
+        }
+        if(response.warning){responses.warning(req, res, response.warning)}
+        if(response.error){responses.error(req, res, response.error)}
+    }catch (e) {
         console.log(e)
         next(e)
     }

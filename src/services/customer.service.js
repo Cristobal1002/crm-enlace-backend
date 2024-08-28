@@ -138,3 +138,39 @@ export const updateCustomer = async (id, data) => {
     }
 };
 
+export const getCustomerByDocument = async(document) => {
+    console.log('document en get cust by document',document)
+    try {
+        const customer = await model.CustomerModel.findOne({
+            where: {document},
+            include: [
+            {
+                model: model.CityModel,
+                attributes: ['id','name','country_id', 'state_id', 'state_name'] // Incluir el nombre de la ciudad
+            },
+            {
+                model: model.CountryModel,
+                attributes: ['id','name', 'iso2','iso3', 'emoji'] // Incluir el nombre de la ciudad
+            },
+            {
+                model: model.StateModel,
+                attributes: ['id','name'] // Incluir el nombre de la ciudad
+            }
+        ]
+            }
+        )
+        if (customer){
+            return {data: customer, error:null, warning:null}
+        }else{
+            return {
+                data: null, warning: null, error:null
+            }
+        }
+
+    } catch (e) {
+        console.log(e)
+        throw new CustomError({ message: 'Error al obtener el cliente', code: 500, data: e.errors || e.message });
+
+    }
+}
+
