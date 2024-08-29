@@ -53,6 +53,17 @@ export const getReasonList = async (page, pageSize, query) => {
     }
 };
 
+export const getActiveReasons = async()=>{
+    try {
+        const reasons = await model.ReasonsModel.findAll({
+            where: {status:true}
+        })
+        return {data: reasons, error: null, warning:null}
+    }catch (e) {
+        throw CustomError({message: `Error al listar los motivos de oración`, code:500, data:e.errors})
+    }
+}
+
 export const updateReason = async (id, data) => {
     try{
         const [affectedRows, updatedRows] = await model.ReasonsModel.update(data,{

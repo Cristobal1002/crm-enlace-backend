@@ -65,3 +65,15 @@ export const updateNovelty = async (id, data) => {
         throw CustomError({message: `Error al actualizar la novedad`, code:500, data:e.errors})
     }
 }
+
+export const getActiveNovelties = async() => {
+    try {
+        const novelties = await model.NoveltyModel.findAll({
+            where:{status: true}
+        })
+        return {data: novelties, error: null, warning: null}
+    }catch (e) {
+        throw CustomError({message: `Error al traer las novedades activas`, code:500, data:e.errors})
+
+    }
+}

@@ -7,6 +7,8 @@ export const bank = express.Router();
 
 bank.post(``, validateToken.checkToken, validateAdmin.isAdmin, bankValidator.createBankValidator, validateRequestMiddleware.validateRequest, bankController.createBank)
 bank.get(`/list`, validateToken.checkToken, validateAdmin.isAdmin, validateRequestMiddleware.validateRequest, bankController.getBankList)
+bank.get(`/list/active`, validateToken.checkToken, validateAdmin.isAdmin, validateRequestMiddleware.validateRequest, bankController.getActiveBankList)
+
 
 
 // Aquí el put que toca dejar de últimas si no jode las otras rutas

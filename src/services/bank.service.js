@@ -87,3 +87,14 @@ export const updateBank = async (id, data) => {
     }
 }
 
+export const getActiveBanks = async () => {
+    try {
+        const banks = await model.BankModel.findAll({
+            where: {status: true}
+        })
+        return {data:banks, error:null, warning: null}
+    }catch (e) {
+        throw CustomError({message: `Error al traer el listado de bancos activos`, code:500, data:e.errors})
+    }
+}
+

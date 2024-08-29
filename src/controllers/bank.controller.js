@@ -36,3 +36,14 @@ export const updateBank = async (req, res, next) => {
         next(e)
     }
 }
+
+export const getActiveBankList = async(req, res, next) => {
+    try {
+        const response = await bankService.getActiveBanks()
+        if(response.data){ responses.success(req, res, response.data)}
+        if(response.error){responses.error(req, res, response.error)}
+    } catch (e) {
+        console.log(e)
+        next(e)
+    }
+}
