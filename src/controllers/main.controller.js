@@ -6,6 +6,7 @@ import * as locationController from './location.controller.js'
 import * as bankController from './bank.controller.js'
 import * as reasonController from './reason.controller.js'
 import * as noveltyController from './novelty.controller.js'
+import * as donationController from './donation.controller.js'
 
 export {
     authController,
@@ -15,5 +16,6 @@ export {
     locationController,
     bankController,
     reasonController,
-    noveltyController
+    noveltyController,
+    donationController
 }

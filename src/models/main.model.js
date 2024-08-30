@@ -28,8 +28,8 @@ CampaignModel.hasMany(DonationModel, {foreignKey:'campaign_id'});
 DonationModel.belongsTo(CampaignModel, {foreignKey:'campaign_id'});
 
 //Relacion uno a muchos entre Cuentas bancarias y donaciones
-BankModel.hasMany(DonationModel, {foreignKey: 'bank_id'});
-DonationModel.belongsTo(BankModel, {foreignKey: 'bank_id'})
+BankModel.hasMany(DonationModel, {foreignKey: 'account_id'});
+DonationModel.belongsTo(BankModel, {foreignKey: 'account_id'})
 
 // Relación muchos a muchos entre Donaciones y Novedades
 DonationModel.belongsToMany(NoveltyModel,{through:DonationNoveltyModel, foreignKey:'donation_id'});
@@ -103,7 +103,7 @@ export const syncDb = async() => {
 
     //await UserModel.sync({alter: true, force: true});
     //await CampaignModel.sync({alter: true, force: true});
-    //await BankModel.sync({alter: true, force: true});
+    //await BankModel.sync({alter: true});
     //await DonationModel.sync({alter: true, force: true});
     //await NoveltyModel.sync({alter: true, force: true});
     //await ReasonsModel.sync({alter: true, force: true});

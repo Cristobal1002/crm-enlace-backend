@@ -6,6 +6,7 @@ import * as locationValidator from './location.validator.js'
 import * as bankValidator from './bank.validator.js'
 import * as reasonValidator from './reason.validator.js'
 import * as noveltyValidator from './novelty.validator.js'
+import * as donationValidator from './donation.validator.js'
 
 export  {
     authValidator,
@@ -15,5 +16,6 @@ export  {
     locationValidator,
     bankValidator,
     reasonValidator,
-    noveltyValidator
+    noveltyValidator,
+    donationValidator
 }

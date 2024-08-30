@@ -26,7 +26,7 @@ DonationModel.init({
     },
     testimony: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
     },
     account_id:{
         type: DataTypes.INTEGER,
