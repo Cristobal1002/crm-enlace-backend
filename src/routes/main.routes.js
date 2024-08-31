@@ -7,6 +7,7 @@ import {bank} from "./bank.routes.js";
 import {reason} from './reason.routes.js';
 import {novelty} from "./novelty.routes.js";
 import {donation} from "./donation.routes.js";
+import {reports} from "./reports.routes.js";
 
 const currentVersion = 'v1'
 
@@ -20,5 +21,6 @@ export const routes = (server) => {
     server.use(`/api/${currentVersion}/reason`, reason);
     server.use(`/api/${currentVersion}/novelty`, novelty);
     server.use(`/api/${currentVersion}/donation`, donation);
+    server.use(`/api/${currentVersion}/reports`, reports);
 
 }

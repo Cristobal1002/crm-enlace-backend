@@ -1,0 +1,9 @@
+import  express  from 'express';
+import {reportsController} from "../controllers/main.controller.js";
+import { validateRequestMiddleware, validateToken, validateAdmin } from '../middleware/main.middleware.js'
+
+export const reports = express.Router();
+
+reports.post(`/total-amount-by-day`, validateToken.checkToken, validateRequestMiddleware.validateRequest, reportsController.getTotalAmountByDayOfWeek)
+reports.post(`/total-records-by-day`, validateToken.checkToken, validateRequestMiddleware.validateRequest, reportsController.getTotalRecordsByDayOfWeek)
+reports.post(`/total-records-amount`, validateToken.checkToken, validateRequestMiddleware.validateRequest, reportsController.getTotalRecordsAndAmountByActiveCampaign)

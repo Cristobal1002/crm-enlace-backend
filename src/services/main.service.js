@@ -7,6 +7,7 @@ import * as bankService from './bank.service.js';
 import * as reasonService from './reason.service.js';
 import * as noveltyService from './novelty.service.js';
 import * as donationService from './donation.service.js';
+import * as reportsService from './reports.service.js'
 
 export {
     userService,
@@ -17,5 +18,6 @@ export {
     bankService,
     reasonService,
     noveltyService,
-    donationService
+    donationService,
+    reportsService
 }
