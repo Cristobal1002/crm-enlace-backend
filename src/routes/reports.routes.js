@@ -7,3 +7,4 @@ export const reports = express.Router();
 reports.post(`/total-amount-by-day`, validateToken.checkToken, validateRequestMiddleware.validateRequest, reportsController.getTotalAmountByDayOfWeek)
 reports.post(`/total-records-by-day`, validateToken.checkToken, validateRequestMiddleware.validateRequest, reportsController.getTotalRecordsByDayOfWeek)
 reports.post(`/total-records-amount`, validateToken.checkToken, validateRequestMiddleware.validateRequest, reportsController.getTotalRecordsAndAmountByActiveCampaign)
+reports.post(`/daily-hour-consolidate`, validateToken.checkToken, validateRequestMiddleware.validateRequest, reportsController.getDonationsConsolidatedByHour)

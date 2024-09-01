@@ -6,7 +6,7 @@ export const createUserValidator = [
     body('phone').isString().notEmpty().withMessage('Phone must be a string and not empty'),
     body('roll')
         .isString().notEmpty().withMessage('Roll must be a string and not empty')
-        .isIn(['admin', 'basic']).withMessage('Roll must be either admin or basic'),
+        .isIn(['admin', 'basic','infinity']).withMessage('Roll must be either admin or basic'),
 ];
 
 export const getQueryValidator = [

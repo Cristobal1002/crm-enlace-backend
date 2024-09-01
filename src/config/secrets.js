@@ -9,3 +9,7 @@ export const database = {
     password: process.env.DB_PASSWORD,
     host: process.env.HOST
 }
+
+export const infinity ={
+    key: process.env.INFINITY_ACCESS
+}

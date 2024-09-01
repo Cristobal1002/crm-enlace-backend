@@ -36,7 +36,7 @@ UserModel.init({
         allowNull: true
     },
     roll: {
-        type: DataTypes.ENUM('admin', 'basic'),
+        type: DataTypes.ENUM('admin', 'basic', 'infinity'),
         allowNull:false
     }
 },{

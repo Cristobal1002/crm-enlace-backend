@@ -5,8 +5,17 @@ import CityModel from '../models/city.model.js';
 
 export const seedDatabase = async () => {
     try {
-        // Leer el archivo JSON que contiene las ciudades
-        const citiesPath = path.resolve('src/database/cities.json');
+        // Leer el archivo JSON que contienen los scripts y el JSON
+        const countriesPath = path.resolve('src/database/scripts/populate.countries.sql')
+        const statesPath = path.resolve('src/database/scripts/populate.states.sql')
+        const citiesPath = path.resolve('src/database/scripts/cities.json');
+
+        const countryQuery = fs.readFileSync(countriesPath,{encoding: 'utf-8'})
+        await sequelize.query(countryQuery)
+
+        const stateQuery = fs.readFileSync(statesPath,{encoding: 'utf-8'})
+        await sequelize.query(stateQuery)
+
         const citiesData = fs.readFileSync(citiesPath, 'utf8');
         const cities = JSON.parse(citiesData);
 
@@ -28,6 +37,7 @@ export const seedDatabase = async () => {
                         longitude: city.longitude,
                         wikiDataId: city.wikiDataId
                     }, { transaction });
+
                 } catch (error) {
                     console.error(`Error al insertar la ciudad ${city.name}:`, error);
                     // Aquí puedes decidir si quieres seguir insertando o lanzar un error
@@ -36,7 +46,7 @@ export const seedDatabase = async () => {
             }
         });
 
-        console.log('Ciudades pobladas exitosamente.');
+        console.log('Base de datos de location pobladas exitosamente.');
     } catch (error) {
         console.error('Error al poblar las ciudades:', error);
     } finally {

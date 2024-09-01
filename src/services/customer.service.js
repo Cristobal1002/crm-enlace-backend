@@ -122,7 +122,7 @@ export const updateCustomer = async (id, data) => {
         });
 
         console.log('Cliente actualizado:', updatedRows[0]);
-        return { data: updatedRows[0], error: null, warning: null };
+        return { data: affectedRows, error: null, warning: null };
     } catch (e) {
         console.error('Error al actualizar el cliente:', e);
 

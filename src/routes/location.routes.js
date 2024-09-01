@@ -8,5 +8,7 @@ export const location = express.Router();
 location.get(`/countries`, validateRequestMiddleware.validateRequest, locationController.getCountries)
 location.get(`/states`,locationValidator.countryValidator, validateRequestMiddleware.validateRequest, locationController.getStatesByCountry)
 location.get(`/cities`,locationValidator.stateValidator, validateRequestMiddleware.validateRequest, locationController.getCitiesByState)
+location.get(`/states/by-country`,locationValidator.stateValidator, validateRequestMiddleware.validateRequest,locationController.getStatesByCountry)
 location.get(`/states/by-city`,locationValidator.stateValidator, validateRequestMiddleware.validateRequest,locationController.getStateByCity)
+location.get(`/cities/by-state`, validateRequestMiddleware.validateRequest, locationController.getCitiesByState)
 location.get(`/cities/by-country`, validateRequestMiddleware.validateRequest, locationController.getCitiesByCountry)

@@ -8,7 +8,6 @@ export class NewCustomError extends Error {
     }
 
     serialize() {
-        console.log("serializing");
         return {
             code: this.code,
             message: this.message,
@@ -17,6 +16,5 @@ export class NewCustomError extends Error {
     }
 }
 
-export const CustomError = ({ message, code, data }) => {
-    return new NewCustomError({ message, code, data });
-};
+// Si necesitas que se importe como `CustomError` desde otros archivos
+export const CustomError = NewCustomError;

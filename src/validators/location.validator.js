@@ -5,6 +5,6 @@ export const countryValidator = [
 ]
 
 export const stateValidator = [
-    query('stateId').isInt().withMessage('StateId is required param')
+    query('countryId').isInt().withMessage('CountryId is required param')
 ]
 

@@ -39,3 +39,16 @@ export const getTotalRecordsAndAmountByActiveCampaign = async (req, res, next) =
         next(e)
     }
 }
+
+export const getDonationsConsolidatedByHour = async(req, res, next) => {
+    const user = req.body.user
+    const role = req.body.role
+    try {
+        const response = await reportsService.getDonationsConsolidatedByHour(user, role)
+        if(response.data){ responses.success(req, res, response.data)}
+        if(response.error){responses.error(req, res, response.error)}
+    }catch (e) {
+        console.log(e)
+        next(e)
+    }
+}

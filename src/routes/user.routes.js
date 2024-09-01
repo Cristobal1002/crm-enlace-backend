@@ -5,6 +5,7 @@ import { validateRequestMiddleware, validateToken, validateAdmin } from '../midd
 
 export const user = express.Router();
 
-user.post(``, userValidator.createUserValidator, validateRequestMiddleware.validateRequest, userController.register);
+user.post(``,validateToken.checkToken, validateAdmin.isAdmin, userValidator.createUserValidator, validateRequestMiddleware.validateRequest, userController.register);
+user.post(`/infinity`, userValidator.createUserValidator, validateRequestMiddleware.validateRequest, userController.createInfinitytUser);
 user.put(`/:id`,validateToken.checkToken, validateAdmin.isAdmin, validateRequestMiddleware.validateRequest, userController.updateUser)
 user.get(`/list`, userValidator.getQueryValidator, validateRequestMiddleware.validateRequest, userController.getUsers)

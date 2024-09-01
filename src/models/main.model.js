@@ -101,7 +101,7 @@ CityModel.hasMany(CustomerModel, { foreignKey: 'city_id' });
 
 export const syncDb = async() => {
 
-    //await UserModel.sync({alter: true, force: true});
+    //await UserModel.sync({alter: true});
     //await CampaignModel.sync({alter: true, force: true});
     //await BankModel.sync({alter: true});
     //await DonationModel.sync({alter: true, force: true});

@@ -19,7 +19,8 @@ export const updateUser = async (req, res, next) => {
     console.log('param', id)
     try {
         const response = await userService.updateUser(id, req.body)
-        responses.success(req, res, response.data)
+        if(response.data){ responses.success(req, res, response.data)}
+        if(response.warning){responses.warning(req, res, response.warning)}
     } catch (e) {
         console.log(e)
         next(e)
@@ -33,6 +34,18 @@ export const getUsers = async (req, res, next) => {
         const response = await userService.getUsersList(page, pageSize, req.query)
         responses.success(req, res, response.data)
     }catch (e) {
+        console.log(e)
+        next(e)
+    }
+}
+
+export const createInfinitytUser = async (req, res, next) => {
+    const data = req.body;
+    try {
+        const response = await userService.createFirstUser(data)
+        if(response.data){ responses.success(req, res, response.data)}
+        if(response.error){responses.error(req, res, response.error)}
+    } catch (e) {
         console.log(e)
         next(e)
     }
