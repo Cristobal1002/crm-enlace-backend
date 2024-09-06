@@ -1,12 +1,13 @@
 import { Sequelize } from 'sequelize';
 import { database } from '../config/secrets.js';
 
+
 let dbConfig = {
-    database: database.name,
-    host: database.host,
-    password: database.password,
+    database: database.name || 'enlace',
+    host: database.host || 'localhost',
+    password: database.password ||  '3nl4c32024@',
     port: 5432,
-    user: database.username,
+    user: database.username || 'admin' ,
     pool: {
         acquire: Number(process.env.PG_POOL_ACQUIRE) || 60000,
         idle: Number(process.env.PG_POOL_IDLE) || 10000,
