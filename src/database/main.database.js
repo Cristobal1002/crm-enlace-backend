@@ -7,7 +7,7 @@ let dbConfig = {
     host: database.host,
     password: database.password,
     port: 5432,
-    user: database.username ,
+    username: database.username ,
     pool: {
         acquire: Number(process.env.PG_POOL_ACQUIRE) || 60000,
         idle: Number(process.env.PG_POOL_IDLE) || 10000,
@@ -28,4 +28,5 @@ const instance = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.pa
         idle: dbConfig.pool.idle
     }
 });
+
 export const sequelize = instance;
