@@ -58,6 +58,7 @@ export const createFirstUser = async (data) => {
             return {data:null, error:'.|. Buen intento loca!', warning:null }
         }
     } catch (e){
+        console.log(e)
         throw new CustomError ({message: `Error al crear el usuario`, code:500, data: e.errors})
     }
 }
