@@ -58,7 +58,7 @@ export const createFirstUser = async (data) => {
             return {data:null, error:'.|. Buen intento loca!', warning:null }
         }
     } catch (e){
-        throw  CustomError ({message: `Error al crear el usuario`, code:500, data: e.errors})
+        throw new CustomError ({message: `Error al crear el usuario`, code:500, data: e.errors})
     }
 }
 
@@ -75,7 +75,7 @@ export const updateUser = async (id, data) => {
         });
         return {data:affectedRows, error:null, warning:null}
     } catch (e) {
-        throw CustomError({message: `Error al actualizar el usuario`, code:500, data:e.errors})
+        throw new CustomError({message: `Error al actualizar el usuario`, code:500, data:e.errors})
     }
 }
 

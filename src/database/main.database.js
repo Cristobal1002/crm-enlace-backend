@@ -3,11 +3,11 @@ import { database } from '../config/secrets.js';
 
 
 let dbConfig = {
-    database: database.name || 'enlace',
-    host: database.host || 'localhost',
-    password: database.password ||  '3nl4c32024@',
+    database: database.name,
+    host: database.host,
+    password: database.password,
     port: 5432,
-    user: database.username || 'admin' ,
+    user: database.username ,
     pool: {
         acquire: Number(process.env.PG_POOL_ACQUIRE) || 60000,
         idle: Number(process.env.PG_POOL_IDLE) || 10000,
