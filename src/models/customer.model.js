@@ -40,7 +40,7 @@ CustomerModel.init({
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     birthday: {
         type: DataTypes.DATE,
@@ -76,11 +76,11 @@ CustomerModel.init({
     },
     neighborhood: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     address:{
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     created_by: {
         type: DataTypes.INTEGER,

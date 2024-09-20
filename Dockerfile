@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 3100
 
 # Comando para ejecutar la aplicación
-CMD [ "node", "src/main.js" ]
+CMD [ "node", "main.js" ]

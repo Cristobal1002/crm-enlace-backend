@@ -45,6 +45,18 @@ export const login = async (data) => {
     }
 };
 
+export const createUser = async (data) => {
+    const key = data.key
+    try {
+            const password = data.document.toString()
+            data.password = await bcrypt.hash(password,9);
+            const register = await model.UserModel.create(data)
+            return {data: register, error:null, warning:null}
+    } catch (e){
+        console.log(e)
+        throw new CustomError ({message: `Error al crear el usuario`, code:500, data: e.errors})
+    }
+}
 
 export const createFirstUser = async (data) => {
     const key = data.key
