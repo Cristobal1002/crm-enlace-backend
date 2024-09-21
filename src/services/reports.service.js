@@ -6,6 +6,11 @@ import {col, fn, literal, Op} from "sequelize";
 export const getTotalAmountByDayOfWeek = async (user, role) => {
     try {
         const whereCondition = role === 'admin' ? {} : { user_id: user };
+
+        // Definir los límites de la semana actual
+        const startOfWeek = literal("DATE_TRUNC('week', NOW()::timestamp AT TIME ZONE 'America/Bogota')"); // Lunes a las 00:00
+        const endOfWeek = literal("DATE_TRUNC('week', NOW()::timestamp AT TIME ZONE 'America/Bogota') + INTERVAL '6 days'"); // Domingo a las 23:59:59
+
         const totals = await model.DonationModel.findAll({
             attributes: [
                 [literal('EXTRACT(DOW FROM ("DonationModel"."createdAt" AT TIME ZONE \'America/Bogota\'))'), 'dayOfWeek'],
@@ -16,7 +21,12 @@ export const getTotalAmountByDayOfWeek = async (user, role) => {
                 where: { status: true }, // Filtra por campaña activa
                 attributes: []
             }],
-            where: whereCondition,
+            where: {
+                ...whereCondition,
+                createdAt: {
+                    [Op.between]: [startOfWeek, endOfWeek], // Filtrar por la semana en curso
+                },
+            },
             group: [literal('EXTRACT(DOW FROM ("DonationModel"."createdAt" AT TIME ZONE \'America/Bogota\'))')],
             order: [literal('EXTRACT(DOW FROM ("DonationModel"."createdAt" AT TIME ZONE \'America/Bogota\')) ASC')]
         });
@@ -27,22 +37,31 @@ export const getTotalAmountByDayOfWeek = async (user, role) => {
     }
 };
 
+
 export const getTotalRecordsByDayOfWeek = async (user, role) => {
     try {
         const whereCondition = role === 'admin' || role === 'infinity' ? {} : { user_id: user };
+
+        // Definir los límites de la semana actual
+        const startOfWeek = literal("DATE_TRUNC('week', NOW()::timestamp AT TIME ZONE 'America/Bogota')"); // Lunes a las 00:00
+        const endOfWeek = literal("DATE_TRUNC('week', NOW()::timestamp AT TIME ZONE 'America/Bogota') + INTERVAL '6 days'"); // Domingo a las 23:59:59
+
         const totals = await model.DonationModel.findAll({
             attributes: [
-                // Ajustamos la extracción del día de la semana considerando la zona horaria
                 [literal('EXTRACT(DOW FROM ("DonationModel"."createdAt" AT TIME ZONE \'America/Bogota\'))'), 'dayOfWeek'],
-                // Contamos el número total de registros
-                [fn('COUNT', col('*')), 'totalRecords']
+                [fn('COUNT', col('*')), 'totalRecords'] // Contar los registros
             ],
             include: [{
                 model: model.CampaignModel,
                 where: { status: true }, // Filtra por campaña activa
                 attributes: []
             }],
-            where: whereCondition,
+            where: {
+                ...whereCondition,
+                createdAt: {
+                    [Op.between]: [startOfWeek, endOfWeek], // Filtrar por la semana en curso
+                },
+            },
             group: [literal('EXTRACT(DOW FROM ("DonationModel"."createdAt" AT TIME ZONE \'America/Bogota\'))')],
             order: [literal('EXTRACT(DOW FROM ("DonationModel"."createdAt" AT TIME ZONE \'America/Bogota\')) ASC')]
         });
@@ -52,6 +71,7 @@ export const getTotalRecordsByDayOfWeek = async (user, role) => {
         throw new CustomError({ message: 'Error al obtener el reporte', code: 500, data: e.errors || e.message });
     }
 };
+
 
 export const getTotalRecordsAndAmount = async (user, role) => {
     try {
@@ -80,6 +100,7 @@ export const getTotalRecordsAndAmount = async (user, role) => {
 };
 export const getDonationsConsolidatedByHour = async (user, role) => {
     try {
+        console.log('Role en reporte grande', role !== 'admin')
         // Definir la zona horaria
         const timeZone = 'America/Bogota';
 
@@ -94,7 +115,7 @@ export const getDonationsConsolidatedByHour = async (user, role) => {
             }
         };
 
-        if (role !== 'admin' || role !== 'infinity') {
+        if (role !== 'admin' && role !== 'infinity') {
             whereCondition.user_id = user;
         }
 
@@ -103,7 +124,7 @@ export const getDonationsConsolidatedByHour = async (user, role) => {
             attributes: [
                 [literal('EXTRACT(HOUR FROM ("DonationModel"."createdAt" AT TIME ZONE \'America/Bogota\'))'), 'hour'],
                 [fn('COUNT', col('"DonationModel"."id"')), 'totalDonations'],
-                ...(role === 'admin' ? [[fn('SUM', col('"DonationModel"."total_amount"')), 'totalAmount']] : [])
+                ...(role === 'admin' || role === 'infinity' ? [[fn('SUM', col('"DonationModel"."total_amount"')), 'totalAmount']] : [])
             ],
             include: [{
                 model: model.CampaignModel,
