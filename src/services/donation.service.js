@@ -39,3 +39,4 @@ export const createDonation = async (body) => {
         throw CustomError({ message: `Error al crear la donación`, code: 500, data: e.errors });
     }
 };
+

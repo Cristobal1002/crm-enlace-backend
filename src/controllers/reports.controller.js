@@ -52,3 +52,34 @@ export const getDonationsConsolidatedByHour = async(req, res, next) => {
         next(e)
     }
 }
+
+export const getDonationsByCampaign = async (req, res, next) => {
+    const id = req.query.id
+    try {
+        const response =  await reportsService.getDonationsByCampaign(id)
+        if(response.data){ responses.success(req, res, response.data)}
+        if(response.error){responses.error(req, res, response.error)}
+    } catch (e) {
+        console.log(e)
+        next(e)
+    }
+}
+
+export const exportDonationsByCampaign = async (req, res, next) => {
+    console.log('Param en el export', req.params)
+    const {campaignId} = req.params
+    try {
+        // Llamada al servicio para generar el reporte en Excel
+        const excelBuffer = await reportsService.exportDonationsReports(campaignId);
+
+        // Configurar encabezados para la descarga de Excel
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.setHeader('Content-Disposition', 'attachment; filename="donations_report.xlsx"');
+
+        // Enviar el archivo Excel
+        res.send(excelBuffer);
+    } catch (e) {
+        console.log(e);
+        next(e); // Manejar errores
+    }
+}
