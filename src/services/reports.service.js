@@ -6,7 +6,7 @@ import ExcelJS from 'exceljs'
 import UserModel from "../models/user.model.js";
 export const getTotalAmountByDayOfWeek = async (user, role) => {
     try {
-        const whereCondition = role === 'admin' ? {} : { user_id: user };
+        const whereCondition = role === 'admin' || role === 'infinity' ? {} : { user_id: user };
 
         // Definir los límites de la semana actual
         const startOfWeek = literal("DATE_TRUNC('week', NOW()::timestamp AT TIME ZONE 'America/Bogota')"); // Lunes a las 00:00
