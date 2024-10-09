@@ -6,21 +6,25 @@ import CityModel from '../models/city.model.js';
 export const seedDatabase = async () => {
     try {
         // Leer el archivo JSON que contienen los scripts y el JSON
+        const customersPath = path.resolve('src/database/scripts/populate.customers.sql')
         const countriesPath = path.resolve('src/database/scripts/populate.countries.sql')
         const statesPath = path.resolve('src/database/scripts/populate.states.sql')
         const citiesPath = path.resolve('src/database/scripts/cities.json');
 
-        const countryQuery = fs.readFileSync(countriesPath,{encoding: 'utf-8'})
+        /*const countryQuery = fs.readFileSync(countriesPath,{encoding: 'utf-8'})
         await sequelize.query(countryQuery)
 
         const stateQuery = fs.readFileSync(statesPath,{encoding: 'utf-8'})
         await sequelize.query(stateQuery)
 
         const citiesData = fs.readFileSync(citiesPath, 'utf8');
-        const cities = JSON.parse(citiesData);
+        const cities = JSON.parse(citiesData);*/
+
+        const customerQuery = fs.readFileSync(customersPath, 'utf8');
+        await sequelize.query(customerQuery)
 
         // Abrir una transacción para asegurar la integridad de los datos
-        await sequelize.transaction(async (transaction) => {
+       /* await sequelize.transaction(async (transaction) => {
             for (const city of cities) {
                 try {
                     // Insertar la ciudad en la base de datos
@@ -44,7 +48,7 @@ export const seedDatabase = async () => {
                     throw error;
                 }
             }
-        });
+        });*/
 
         console.log('Base de datos de location pobladas exitosamente.');
     } catch (error) {
