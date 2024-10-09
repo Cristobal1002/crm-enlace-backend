@@ -9,4 +9,4 @@ customer.post(``,validateToken.checkToken, customerValidator.createCustomerValid
 customer.get('/list',validateToken.checkToken, validateRequestMiddleware.validateRequest,customerController.getCustomerList)
 customer.get(``, validateToken.checkToken, validateRequestMiddleware.validateRequest, customerController.getCustomerByDocument)
 //Esta ruta siempre dejarla de ultimas sino jode por problema de javascript
-customer.put(`/:id`, validateToken.checkToken, validateAdmin.isAdmin, validateRequestMiddleware.validateRequest, customerController.updateCustomer)
+customer.put(`/:id`, validateToken.checkToken, validateRequestMiddleware.validateRequest, customerController.updateCustomer)
