@@ -14,7 +14,7 @@ CustomerModel.init({
         primaryKey: true
     },
     document: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         allowNull: false,
         unique: true
     },
